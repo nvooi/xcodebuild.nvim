@@ -75,6 +75,7 @@ function M.run_config(projectFile, scheme)
     projectFile,
     "-scheme",
     scheme,
+    "--skip-validate-bin"
   }
 
   if configJobId then
@@ -82,9 +83,6 @@ function M.run_config(projectFile, scheme)
   end
 
   configJobId = vim.fn.jobstart(command, {
-    on_exit = function()
-      require("xcodebuild.integrations.lsp").restart_sourcekit_lsp()
-    end,
   })
 
   return configJobId
