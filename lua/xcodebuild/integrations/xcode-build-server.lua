@@ -78,16 +78,14 @@ function M.run_config(projectFile, scheme)
     "--skip-validate-bin"
   }
 
-  if configJobId then
-    vim.fn.jobstop(configJobId)
+  if configJobHandle then
+    configJobHandle:kill(9) -- terminate previous job
   end
 
-  configJobId = vim.fn.jobstart(command, {
-    on_exit = vim.schedule_wrap(function()
-    end),
-  }))
+  configJobHandle = vim.system(command, { text = true }, function(obj)
+  end)
 
-  return configJobId
+  return configJobHandled
 end
 
 ---Calls "config" command of xcode-build-server in order to update buildServer.json file.
