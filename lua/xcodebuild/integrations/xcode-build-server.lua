@@ -17,7 +17,7 @@ local M = {}
 
 ---Current xcode-build-server job id
 ---@type number|nil
-local configJobId
+local configJobHandle
 
 ---Current find schemes job id
 ---@type number|nil
@@ -85,7 +85,7 @@ function M.run_config(projectFile, scheme)
   configJobHandle = vim.system(command, { text = true }, function(obj)
   end)
 
-  return configJobHandled
+  return configJobHandle
 end
 
 ---Calls "config" command of xcode-build-server in order to update buildServer.json file.
