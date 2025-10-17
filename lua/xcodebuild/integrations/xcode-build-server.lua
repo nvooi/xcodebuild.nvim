@@ -83,9 +83,9 @@ function M.run_config(projectFile, scheme)
   end
 
   configJobId = vim.fn.jobstart(command, {
-    on_exit = function()
-    end,
-  })
+    on_exit = vim.schedule_wrap(function()
+    end),
+  }))
 
   return configJobId
 end
